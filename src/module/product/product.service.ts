@@ -19,15 +19,6 @@ export class ProductService {
     
     async deleteProduct(product_id: string) {
 
-        const productExist = await this.prisma.product.findUnique({
-            where : {
-                id: product_id
-            }
-        })
-
-        if (productExist) {
-            throw new error("Produto não encontrado")
-        }
 
         const deletedProduct = await this.prisma.product.delete({
             where : {
@@ -41,15 +32,6 @@ export class ProductService {
 
     async updateProduct(product_id: string, dataProduct : ProductDTO) {
 
-        const productExist = await this.prisma.product.findUnique({
-            where : {
-                id: product_id
-            }
-        })
-
-        if (productExist) {
-            throw new error("Produto não encontrado")
-        }
 
         const updatedProduct = await this.prisma.product.update({
             where: {

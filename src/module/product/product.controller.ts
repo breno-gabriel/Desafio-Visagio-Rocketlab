@@ -2,7 +2,7 @@ import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common'
 import { ProductService } from './product.service';
 import {ProductDTO} from './product.dto'
 
-@Controller()
+@Controller('products')
 export class NotebookController {
 
     constructor(private readonly productService: ProductService) {}
@@ -16,7 +16,7 @@ export class NotebookController {
 
     }
 
-    @Delete(':id')
+    @Delete('delete/:id')
     deleteProduct(@Param('id') product_id: string) : string {
 
         this.productService.deleteProduct(product_id)
