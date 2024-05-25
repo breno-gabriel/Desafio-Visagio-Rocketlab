@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import {ProductDTO} from './product.dto'
 import { PrismaService } from 'src/database/prisma.service';
 import { Prisma, Product } from '@prisma/client';
+import { error } from 'console';
 
 @Injectable()
 export class ProductService {
@@ -18,6 +19,16 @@ export class ProductService {
     
     async deleteProduct(product_id: string) {
 
+        const productExist = await this.prisma.product.findUnique({
+            where : {
+                id: product_id
+            }
+        })
+
+        if (productExist) {
+            throw new error("Produto não encontrado")
+        }
+
         const deletedProduct = await this.prisma.product.delete({
             where : {
                 id: product_id
@@ -29,6 +40,16 @@ export class ProductService {
     }
 
     async updateProduct(product_id: string, dataProduct : ProductDTO) {
+
+        const productExist = await this.prisma.product.findUnique({
+            where : {
+                id: product_id
+            }
+        })
+
+        if (productExist) {
+            throw new error("Produto não encontrado")
+        }
 
         const updatedProduct = await this.prisma.product.update({
             where: {
