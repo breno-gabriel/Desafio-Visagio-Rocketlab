@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/common';
 import { ProductService } from './product.service';
 import {ProductDTO} from './product.dto'
 
@@ -8,7 +8,7 @@ export class NotebookController {
     constructor(private readonly productService: ProductService) {}
 
     @Post('create')
-    createNotebook(@Body() data: ProductDTO) : string {
+    createProduct(@Body() data: ProductDTO) : string {
 
         this.productService.creatProduct(data)
 
@@ -29,6 +29,20 @@ export class NotebookController {
     updateProduct(@Param('id') product_id: string, @Body() data: ProductDTO): string {
       this.productService.updateProduct(product_id, data);
       return "Produto atualizado com sucesso!";
+    }
+
+    @Get('storage')
+    getProductsStorage() {
+
+        return this.productService.getAllproducts();
+
+    }
+
+    @Get('search')
+    searchProducts(@Query('productName') productName?: string, @Query('sellerName') sellerName?: string) {
+
+        return this.productService.SearchProduct(productName, sellerName);
+
     }
 
 }

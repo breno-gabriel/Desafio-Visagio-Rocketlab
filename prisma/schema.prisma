@@ -15,7 +15,7 @@ datasource db {
 
 model Product {
 
-  id    
+  id           String   @id @default(uuid()) 
   productName  String 
   productImage String?
   description   String

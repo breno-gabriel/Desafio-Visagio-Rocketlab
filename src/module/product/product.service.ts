@@ -44,4 +44,25 @@ export class ProductService {
 
     }
 
+    async getAllproducts() {
+
+        const products = await this.prisma.product.findMany()
+        
+        return products
+
+    }
+
+    async SearchProduct(searchName: string, sellerName: string)  {
+
+        const products = await this.prisma.product.findMany({
+            where: {
+                productName: searchName,
+                sellerName: sellerName
+            },
+          })
+
+        return products
+
+    }
+
 }
