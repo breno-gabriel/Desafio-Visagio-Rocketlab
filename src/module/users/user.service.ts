@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { PrismaService } from 'src/database/prisma.service';
-import { LoginUserDto } from './dto/login-user.dto';
 // import { ProductListDTO } from './dto/product-list.dto';
 import { Decimal } from '@prisma/client/runtime/library';
 import { ProductIdDTO } from './dto/product-list.dto';
