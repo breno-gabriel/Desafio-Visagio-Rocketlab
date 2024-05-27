@@ -1,21 +1,9 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { IsOptional, IsEmail, Matches, IsNotEmpty, MinLength, MaxLength } from "class-validator";
+import { PartialType } from '@nestjs/mapped-types';
+import { CreateUserDto } from './create-user.dto';
+import { IsNotEmpty, Matches, MaxLength, MinLength } from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger';
 
-export class CreateUserDto {
-  
-    @ApiProperty({
-        description: "Esse campo contém o primeiro nome do usuário", 
-        example: "Breno"
-    })
-    @IsNotEmpty()
-    FirstName: string;
-
-    @IsNotEmpty()
-    @ApiProperty({
-        description: "Esse campo contém o último nome do usuário", 
-        example: "Lima"
-    })
-    LastName: string;
+export class LoginUserDto  {
 
     @IsNotEmpty()
     @ApiProperty({
@@ -28,22 +16,6 @@ export class CreateUserDto {
     userName: string;
 
     @IsNotEmpty()
-    @IsEmail()
-    @ApiProperty({
-        description: "Esse campo contém o email do usuário", 
-        example: "sudoko3212@outlook.com"
-    })
-    email: string;
-
-    @IsOptional()
-    @Matches(/^\(\d{2}\)\s\d{4,5}-\d{4}$/, { message: 'Telefone deve estar no formato (XX) XXXXX-XXXX ou (XX) XXXX-XXXX' })
-    @ApiProperty({
-        description: "Esse campo contém o número de telefone do usuário", 
-        example: "(81) 92222-2222"
-    })
-    cellPhone: string;
-
-    @IsNotEmpty()
     @ApiProperty({
         description: "Esse campo contém a senha do usuário, devendo ter deve ter pelo menos 8 caracteres, incluindo uma letra maiúscula, uma letra minúscula, um número e um caractere especial.", 
         example: "Password123!"
@@ -53,4 +25,5 @@ export class CreateUserDto {
         { message: 'A senha deve ter pelo menos 8 caracteres, incluindo uma letra maiúscula, uma letra minúscula, um número e um caractere especial.' }
     )
     password: string;
+
 }
