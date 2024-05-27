@@ -1,7 +1,9 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/common';
 import { ProductService } from './product.service';
 import {ProductDTO} from './product.dto'
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags("Products")
 @Controller('products')
 export class NotebookController {
 
