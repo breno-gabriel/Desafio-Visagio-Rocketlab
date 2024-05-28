@@ -1,16 +1,11 @@
+import { ApiProperty } from "@nestjs/swagger";
 import { Decimal } from "@prisma/client/runtime/library";
 import { Type } from "class-transformer";
 import { ArrayNotEmpty, IsArray, ValidateNested, IsString, IsOptional, IsDecimal, IsDate } from "class-validator";
 
-// export class ProductListDTO {
-//   @IsArray()
-//   @ArrayNotEmpty()
-//   @ValidateNested({ each: true })
-//   @Type(() => ProductDTO)
-//   productsList: ProductDTO[];
-// }
 
 export class ProductIdDTO {
+
 
   @IsString()
   id: string;
@@ -34,7 +29,7 @@ export class ProductIdDTO {
   @IsString()
   sellerCellphone: string;
 
-  // @Type(() => Decimal)
+  @IsString()
   price: string;
 
   @Type(() => Date)
